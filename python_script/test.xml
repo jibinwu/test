@@ -1,0 +1,8 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<class>
+	<student>
+		<name>jack</name>
+		<age>25</age>
+		<city>beijing</city>
+	</student>
+</class>

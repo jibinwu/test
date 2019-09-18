@@ -1,0 +1,3 @@
+jack,25,beijing
+kobe,26,shnaghai
+haden,24,zhejiang
