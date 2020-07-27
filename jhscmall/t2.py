@@ -27,7 +27,8 @@
 # if __name__ == '__main__':
 #     unittest.main(verbosity=2)
 import unittest
-import HTMLTestRunner
+from HtmlTestRunner import HTMLTestRunner
+import time
 import os
 
 class TestMethod(unittest.TestCase):  # 定义一个类，继承自unittest.TestCase
@@ -71,19 +72,23 @@ report='C:/Users/Administrator/PycharmProjects/test/jhscmall/testresult.html'
 fp=open(report,'wb',)
 suite = unittest.TestSuite()
 case = unittest.TestLoader().loadTestsFromTestCase(TestMethod)
-# discover=unittest.defaultTestLoader.discover()
+# discover=unittest.defaultTestLoader.discover() 这个方法其实是最厉害的查找测试用例的方法
 suite.addTest(case)
 suite.addTest(TestMethod('test001'))
-runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title='接口测试报告', description='测试结果如下：')
+runner = HTMLTestRunner(stream=fp, report_title='接口测试报告', descriptions='测试结果如下：')
 runner.run(suite)
 fp.close()
 
 
-# report='C:/Users/Administrator/PycharmProjects/test/jhscmall/testresult.html'
-# with open(report,'w',encoding='UTF-8') as f:
-#     suite = unittest.TestSuite()
-#     case = unittest.TestLoader().loadTestsFromTestCase(TestMethod)
-#     suite.addTest(case)
-#     runner = HTMLTestRunner.HTMLTestRunner(stream=f, title='接口测试报告', description='测试结果如下：',)
+# report_path=os.path.join(os.path.dirname(__file__),'report')
+# now=time.strftime('%Y-%m-%d %H_%M_%S',time.localtime())
+# filename=report_path+'/'+now+'_result.html'
+#suite = unittest.TestSuite()
+#case = unittest.TestLoader().loadTestsFromTestCase(TestMethod)
+#suite.addTest(case)
+#with open(filename,'wb',) as f:
+#     runner = HTMLTestRunner.HTMLTestRunner(
+#          stream=f,
+#          title='接口测试报告',
+#          description='测试结果如下：')
 #     runner.run(suite)
-#     f.close()

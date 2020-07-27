@@ -43,10 +43,12 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEqual(test, expected)
 
+
+
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)
