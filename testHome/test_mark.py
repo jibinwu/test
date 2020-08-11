@@ -2,7 +2,7 @@ import pytest
 
 '''
 pytest.ini文件定义了mark标签属性，所以在执行脚本时不会报warning信息
-pytest -s -v test_mark.py -m "not iostest"
+pytest -s -v test_mark.py -m "not iostest"或-m=webtest或-m webtest 引号要用双引号
 pytest -s -v -x test_mark.py 用例执行错误就停止
 pytest -s -v --maxfail=2 test_mark.py 用例执行错误累积2次就停止
 pytest -s -v --reruns 3 test_mark.py 自动重跑3次失败的测试用例
