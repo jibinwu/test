@@ -17,6 +17,7 @@ class TestSearch:
         elm.send_keys('pycon')
         elm.send_keys(Keys.RETURN)
         assert "No results found." not in self.driver.page_source
+
         self.driver.close()
 
     # def tearDown(self):
