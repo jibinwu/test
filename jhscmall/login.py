@@ -6,8 +6,8 @@ import os
 
 @ddt
 class MyTestCase(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
+    # @classmethod
+    def setUp(self):
         caps = {"platformName": "Android",
                 "deviceName": "9889d539424d324a4d",
                 "appPackage": "com.lianxing.purchase.mock",
@@ -16,7 +16,8 @@ class MyTestCase(unittest.TestCase):
                 "reserKeyboard": "true",
                 }
 
-        cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
+        self.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
+        self.driver.implicitly_wait(10)
 
     @data(("15000000000", "123456a", True), ("15058321650", "123456a", False))
     @unpack
@@ -24,6 +25,7 @@ class MyTestCase(unittest.TestCase):
         self.driver.implicitly_wait(5)
         self.driver.find_element_by_id("android:id/button1").click()
         self.driver.find_element_by_id("com.android.packageinstaller:id/permission_allow_button").click()
+        self.driver.find_element_by_xpath("//*[contains(@resource-id,'iv_cancel')]").click()
         time.sleep(3)
         self.driver.swipe(1400, 500, 100, 500)
         self.driver.swipe(1400, 500, 100, 500)
@@ -45,9 +47,9 @@ class MyTestCase(unittest.TestCase):
 
 
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.driver.quit()
+    # @classmethod
+    def tearDown(self):
+        self.driver.quit()
 
 
 if __name__ == '__main__':
