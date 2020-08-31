@@ -19,7 +19,7 @@ class MyTestCase(unittest.TestCase):
         self.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
         self.driver.implicitly_wait(10)
 
-    @data(("15000000000", "123456a", True), ("15058321650", "123456a", False))
+    @data(("15058321650", "123456a", False),("15000000000", "123456a", True))
     @unpack
     def test_login(self, username, password, expected):
         self.driver.implicitly_wait(5)
@@ -29,7 +29,7 @@ class MyTestCase(unittest.TestCase):
         time.sleep(3)
         self.driver.swipe(1400, 500, 100, 500)
         self.driver.swipe(1400, 500, 100, 500)
-        self.driver.get_screenshot_as_file()
+        self.driver.get_screenshot_as_file(time.ctime()+".png")
         self.driver.find_element_by_id("com.lianxing.purchase.mock:id/btn_join").click()
         self.driver.find_element_by_id("com.lianxing.purchase.mock:id/edit_username").clear()
         self.driver.find_element_by_id("com.lianxing.purchase.mock:id/edit_username").send_keys(username)
