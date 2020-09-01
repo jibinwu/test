@@ -13,7 +13,8 @@ class MyTestCase(unittest.TestCase):
                 "appPackage": "com.lianxing.purchase.mock",
                 "appActivity": "com.lianxing.purchase.mall.launcher.LauncherActivity",
                 "unicodeKeyboard": "true",
-                "reserKeyboard": "true",
+                "resetKeyboard": "true",
+                # "autoGrantPermissions":"true"  授予应用权限
                 }
 
         self.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
@@ -22,7 +23,6 @@ class MyTestCase(unittest.TestCase):
     @data(("15058321650", "123456a", False),("15000000000", "123456a", True))
     @unpack
     def test_login(self, username, password, expected):
-        self.driver.implicitly_wait(5)
         self.driver.find_element_by_id("android:id/button1").click()
         self.driver.find_element_by_id("com.android.packageinstaller:id/permission_allow_button").click()
         self.driver.find_element_by_xpath("//*[contains(@resource-id,'iv_cancel')]").click()
@@ -45,8 +45,6 @@ class MyTestCase(unittest.TestCase):
             test = False
 
         self.assertEqual(test, expected)
-
-
 
     # @classmethod
     def tearDown(self):
