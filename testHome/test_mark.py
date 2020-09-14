@@ -1,5 +1,6 @@
 import pytest
 
+
 '''
 pytest.ini文件定义了mark标签属性，所以在执行脚本时不会报warning信息
 pytest -s -v test_mark.py -m "not iostest"或-m=webtest或-m webtest gi引号要用双引号
